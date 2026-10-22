@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>التقرير الفني لمشروع شبكات الحاسوب المتقدمة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #ed8936;
+            --bg-color: #f7fafc;
+            --text-color: #2d3748;
+            --code-bg: #1e1e1e;
+            --code-text: #4ade80;
+            --output-bg: #0f172a;
+            --output-text: #f8fafc;
+            --danger-color: #e53e3e;
+            --success-color: #38a169;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cover Page */
+        .cover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cover h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            line-height: 1.4;
+        }
+
+        .cover h2 {
+            font-size: 1.8em;
+            font-weight: 400;
+            color: #e2e8f0;
+            margin-bottom: 50px;
+            line-height: 1.5;
+        }
+
+        .team-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 40px;
+            margin-top: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .team-box h3 {
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            font-size: 1.6em;
+        }
+
+        .team-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .team-list li {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        .supervisor {
+            margin-top: 50px;
+            font-size: 1.4em;
+            font-weight: 700;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            border-top: 5px solid var(--secondary-color);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+
+        /* Table of Contents */
+        .toc-list {
+            list-style: none;
+            padding: 20px;
+            font-size: 1.3em;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #cbd5e0;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .toc-list a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .toc-list a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Theory Cards */
+        .theory-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .theory-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+            border-right: 5px solid var(--secondary-color);
+        }
+
+        .theory-card h4 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 1.5em;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .theory-card.highlight-card {
+            border-right: 5px solid var(--accent-color);
+            background: #fffaf0;
+        }
+
+        /* Code Blocks */
+        .device-config {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .device-title {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px 8px 0 0;
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 25px;
+            border-radius: 0 0 8px 8px;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 16px;
+            margin-top: 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.6;
+        }
+
+        .output-pre {
+            background: var(--output-bg);
+            color: var(--output-text);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .comment { color: #888; font-style: italic; }
+        .highlight { color: #fbbf24; font-weight: bold; }
+
+        /* Troubleshooting Box */
+        .troubleshoot-box {
+            background: white;
+            border: 2px solid var(--danger-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            page-break-inside: avoid;
+        }
+
+        .troubleshoot-box h4 {
+            color: var(--danger-color);
+            font-size: 1.6em;
+            margin-top: 0;
+            border-bottom: 2px solid #fed7d7;
+            padding-bottom: 10px;
+        }
+
+        .solution-title {
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 1.1em;
+            text-align: justify;
+        }
+
+        /* Print Settings for PDF Pages */
+        @media print {
+            body { background: white; }
+            .container { max-width: 100%; box-shadow: none; padding: 0; }
+            .cover { box-shadow: none; margin-bottom: 0; height: 100vh; }
+            .section { box-shadow: none; border: none; padding: 20px 0; }
+            .page-break { page-break-before: always; padding-top: 40px; }
+            pre { white-space: pre-wrap; word-wrap: break-word; }
+        }
+
+    
+        .topology-figure { margin: 25px 0 30px; text-align: center; page-break-inside: avoid; }
+        .topology-figure img { display: block; width: 100%; height: auto; border: 1px solid #cbd5e0; border-radius: 10px; margin: 0 auto; }
+        .topology-figure figcaption { color: #4a5568; font-size: 0.95em; margin-top: 10px; }
+        .review-note { background: #fffaf0; border-right: 5px solid #ed8936; padding: 16px 20px; border-radius: 8px; margin: 20px 0; }
+        .scope-note { background: #ebf8ff; border-right: 5px solid #2b6cb0; padding: 16px 20px; border-radius: 8px; margin: 20px 0; }
+    
+        .topology-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 24px 0; }
+        .topology-detail { border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; background: #fff; page-break-inside: avoid; }
+        .topology-detail img { display: block; width: 100%; height: auto; border: 1px solid #edf2f7; border-radius: 6px; }
+        .topology-detail h4 { margin: 0 0 8px; color: #1a365d; font-size: 1.05em; }
+        .topology-detail p { font-size: .98em; margin: 8px 0 0; }
+        @media (max-width: 700px) { .topology-details { grid-template-columns: 1fr; } }
+        @media print { .topology-details { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>
+</head>
+<body>
+<div class="container">
+<!-- الغلاف -->
+<div class="cover">
+<h1>التقرير الفني والوثيقة التقنية لمشروع شبكات الحاسوب المتقدمة</h1>
+<h2>تصميم، تنفيذ، واختبار شبكة مؤسسية واسعة (WAN) باستخدام بروتوكولات التوجيه والتبديل المتقدمة عبر مزودي الخدمة (ISP Core)</h2>
+<div class="team-box">
+<h3>إعداد وتطوير المهندسين:</h3>
+<ul class="team-list">
+<li>حذيفه لبيب أبوالرجال</li>
+<li>خالد وليد حاجب</li>
+<li>أمين نبيل المليكي</li>
+<li>رزاز رشاد نصاري</li>
+</ul>
+<div class="supervisor">
+                إشراف هندسي: المهندس / زكريا
+            </div>
+</div>
+</div>
+<!-- الفهرس (صفحة جديدة) -->
+<div class="section page-break" id="toc">
+<h2 class="section-title">الفهرس (Table of Contents)</h2>
+<ul class="toc-list">
+<li><a href="#intro">1. المقدمة والأهداف الاستراتيجية للمشروع</a> <span>2</span></li>
+<li><a href="#theory">2. الإطار النظري: التقنيات والبروتوكولات المستخدمة</a> <span>3</span></li>
+<li><a href="#topology">3. المخطط الهيكلي وطوبولوجيا الشبكة</a> <span>5</span></li>
+<li><a href="#configs-branches">4. إعدادات فروع المؤسسة (إب وعدن)</a> <span>6</span></li>
+<li><a href="#configs-core">5. إعدادات مزودي الخدمة المركزية (ISPs &amp; MPLS)</a> <span>8</span></li>
+<li><a href="#security">6. إعدادات الأمان (Port Security &amp; STP)</a> <span>11</span></li>
+<li><a href="#verification">6. الفحص والاختبار الفني وحل المشكلات التوجيهية</a> <span>12</span></li>
+<li><a href="#justifications">7. مبررات اختيار التصميم</a> <span>15</span></li>
+<li><a href="#conclusion">8. الخاتمة والتوصيات</a> <span>16</span></li>
+</ul>
+</div>
+<!-- المقدمة -->
+<div class="section page-break" id="intro">
+<h2 class="section-title">1. المقدمة والأهداف الاستراتيجية للمشروع</h2>
+<p>
+            في عصر التحول الرقمي، تعتمد المؤسسات الكبرى على بنية تحتية شبكية قوية تضمن نقل البيانات بسرعات عالية وبمستوى أمان لا يقبل المساومة. يمثل هذا المشروع نموذجاً متكاملاً لتصميم وبناء شبكة واسعة النطاق (WAN) تربط بين فرعين رئيسيين في مدينتي (إب) و(عدن) من خلال بنية تحتية تدار بواسطة مزودي خدمة الإنترنت (ISPs).
+        </p>
+<p>
+            تم تصميم هذه الشبكة لتكون قابلة للتوسع (Scalable)، وذات موثوقية عالية (Reliable)، حيث تم دمج بروتوكولات التوجيه الديناميكي المتقدمة مع تقنيات العزل الوهمي لحماية بيانات الأقسام المختلفة.
+        </p>
+<p><strong>الأهداف الرئيسية للمشروع:</strong></p>
+<ul>
+<li>بناء بيئة افتراضية تحاكي الواقع لربط شبكات محلية (LANs) متباعدة جغرافياً.</li>
+<li>تطبيق مفاهيم التوجيه المتقدمة (OSPF) لضمان إيجاد المسارات الأقصر والأسرع لانتقال الحزم.</li>
+<li>تسريع التوجيه في الشبكة المركزية (Core Network) لتخفيف العبء على الروترات باستخدام تقنية (MPLS).</li>
+<li>تأمين الاتصال بين الفروع ومزودي الخدمة عبر قنوات موثقة ببروتوكولات التشفير (PPP CHAP).</li>
+<li>تطبيق سياسات الأمان في طبقة الوصول (Access Layer) لمنع اختراق الشبكة داخلياً (Port Security &amp; STP).</li>
+<li>التوزيع الأمثل لعناوين الـ IP باستخدام تقنية (VLSM) لضمان عدم الهدر في المساحة الرقمية للشبكة.</li>
+</ul>
+</div>
+<!-- الجانب النظري -->
+<div class="section page-break" id="theory">
+<h2 class="section-title">2. الإطار النظري: التقنيات والبروتوكولات المستخدمة</h2>
+<p>لتحقيق أهداف المشروع، تم استخدام طيف واسع من بروتوكولات الشبكات التي تعمل في طبقات مختلفة من نموذج (OSI). التقرير التالي يفصل كل تقنية ودورها المحوري في الشبكة:</p>
+<div class="theory-grid">
+<!-- إضافة شرح VLSM الموسع -->
+<div class="theory-card highlight-card">
+<h4>1. العنونة الذكية وتجزئة الشبكات (VLSM - Variable Length Subnet Mask)</h4>
+<p><strong>فكرة العمل:</strong> تعتبر تقنية VLSM بمثابة "تجزئة لشبكة تم تجزئتها مسبقاً" (Subnetting a Subnet). في التوزيع التقليدي، يكون قناع الشبكة (Subnet Mask) ثابتاً لجميع الشبكات الفرعية، مما يؤدي إلى إهدار هائل في عناوين الـ IP. أما في VLSM، فإننا نخصص قناع الشبكة بناءً على <strong>الاحتياج الفعلي لعدد الأجهزة</strong> في كل قسم.</p>
+<p><strong>التطبيق في المشروع:</strong> استخدمنا هذه التقنية بذكاء لتوفير العناوين. على سبيل المثال:
+                <ul>
+<li><strong>الروابط التسلسلية (Serial Links) بين الراوترات:</strong> تحتاج إلى عنوانين فقط (مرسل ومستقبل). لذلك استخدمنا قناع <code>/30</code> (255.255.255.252) الذي يوفر بالضبط عنوانين متاحين للاستخدام، بدلاً من استخدام <code>/24</code> الذي سيهدر 252 عنواناً.</li>
+<li><strong>شبكات الفروع الداخلية (VLANs):</strong> استخدمنا أقنعة مختلفة مثل <code>/26</code> أو <code>/27</code> أو <code>/28</code> بناءً على عدد موظفي وعملاء كل قسم (المدراء والعملاء في إب وعدن)، مما حقق أعلى كفاءة هندسية لتوزيع العناوين.</li>
+</ul>
+</p>
+</div>
+<div class="theory-card">
+<h4>2. الشبكات المحلية الافتراضية (VLAN &amp; Router-on-a-stick)</h4>
+<p>تم استخدام VLANs لتقسيم الشبكة المحلية في كل من فرعي إب وعدن إلى شبكتي Manager وEmployee. وفق تسمية الأدوار التي أكدها صاحب المشروع، VLAN 10 في إب وVLAN 30 في عدن مخصصتان لـ Employee، بينما VLAN 20 في إب وVLAN 40 في عدن مخصصتان لـ Manager. يقلل التقسيم من نطاق البث ويفصل الأقسام منطقيًا. استُخدم Router-on-a-Stick للتوجيه بين VLANs عبر واجهات فرعية؛ وتظل أسماء VLAN التشغيلية بحاجة إلى مطابقة مع الملف الأصلي غير المتوفر.</p>
+</div>
+<div class="theory-card">
+<h4>3. بروتوكول التوجيه الديناميكي (OSPF)</h4>
+<p>بروتوكول OSPF (Open Shortest Path First) يعمل في طبقة الشبكة، ويقوم بتبادل معلومات المسارات بين الروترات لبناء خريطة كاملة للشبكة. تم استخدامه هنا لربط شبكات فروع المؤسسة (Area 0) لضمان توجيه ديناميكي سريع يستجيب لأي انقطاع في الروابط، محققاً التوافرية العالية.</p>
+</div>
+<div class="theory-card">
+<h4>4. التبديل متعدد البروتوكولات باستخدام الملصقات (MPLS)</h4>
+<p>تُعد تقنية MPLS العصب الرئيسي لشبكة مزودي الخدمة في هذا المشروع. تضيف MPLS ملصقًا للحزم وتتيح للراوترات داخل شبكة المزود تمريرها اعتمادًا على الملصقات وفق جداول التبديل. في هذا المشروع، تُستخدم مخرجات LDP وجدول MPLS Forwarding Table كأدلة على عمل آلية توزيع الملصقات وتمريرها. لم يتضمن التقرير قياسات أداء مقارنة، لذلك لا ندّعي مقدارًا محددًا من التحسن في السرعة أو استهلاك المعالج.</p>
+</div>
+<div class="theory-card">
+<h4>5. بروتوكول المصادقة (PPP with CHAP)</h4>
+<p>تم استخدام PPP مع CHAP للتحقق من هوية الطرف المقابل عبر آلية التحدي والاستجابة، دون إرسال كلمة المرور نفسها كنص واضح. CHAP لا يعني تشفير كل بيانات الوصلة؛ لذلك يجب عدم وصفه على أنه قناة تشفير للبيانات.</p>
+</div>
+<div class="theory-card">
+<h4>6. تجميع الوصلات المنطقية (Multilink PPP)</h4>
+<p>تسمح تقنية Multilink PPP بتجميع وصلات فعلية متوافقة ضمن واجهة منطقية واحدة. وتُظهر أحدث مخرجات الراوتر Radden واجهة <code>Multilink1</code> بعنوان <code>10.70.10.2</code> وحالة <code>up/up</code>. لم يتوفر ملف المحاكاة أو إعدادات التجميع الكاملة للتحقق من أعضاء الحزمة الفعليين.</p>
+</div>
+</div>
+</div>
+<!-- الطوبولوجيا -->
+<div class="section page-break" id="topology">
+<h2 class="section-title">3. المخطط الهيكلي وطوبولوجيا الشبكة</h2>
+<p>يعرض الشكل التالي مخطط المشروع الأصلي مع تحديث تسميات عناوين الشبكات وأقنعة الشبكة والبوابات وفق المعلومات المؤكدة. تم الحفاظ على بنية الطوبولوجيا الأصلية، وتوفير تكبيرات من النسخة نفسها لتسهيل قراءة مناطق VLAN. كما تتوفر نسخة المصدر غير المعدلة في مجلد topology.</p>
+<figure class="topology-figure"><a href="../topology/Network-Topology.png" rel="noopener" target="_blank"><img alt="مخطط طوبولوجيا الشبكة مع تسميات VLAN والعناوين المحدثة، اعتمادًا على صورة المشروع الأصلية" src="../topology/Network-Topology.png"/></a><figcaption>الشكل 1: مخطط الشبكة الأصلي الذي قدمه فريق المشروع. تم الاحتفاظ به دون إعادة رسم؛ اضغط على الصورة لفتح ملفها بالحجم الكامل.</figcaption></figure><div class="topology-details"><div class="topology-detail"><h4>فرع إب — VLAN 10 / Employee</h4><img alt="تكبير من الصورة الأصلية: فرع إب — VLAN 10 / Employee" src="../topology/details/ibb-vlan10-employee.jpg"/><p>192.168.30.0/28 — البوابة 192.168.30.1</p></div><div class="topology-detail"><h4>فرع إب — VLAN 20 / Manager</h4><img alt="تكبير من الصورة الأصلية: فرع إب — VLAN 20 / Manager" src="../topology/details/ibb-vlan20-manager.jpg"/><p>192.168.30.64/26 — البوابة 192.168.30.65</p></div><div class="topology-detail"><h4>فرع عدن — VLAN 30 / Employee</h4><img alt="تكبير من الصورة الأصلية: فرع عدن — VLAN 30 / Employee" src="../topology/details/aden-vlan30-employee.jpg"/><p>192.168.10.0/26 — البوابة 192.168.10.1</p></div><div class="topology-detail"><h4>فرع عدن — VLAN 40 / Manager</h4><img alt="تكبير من الصورة الأصلية: فرع عدن — VLAN 40 / Manager" src="../topology/details/aden-vlan40-manager.jpg"/><p>192.168.10.64/28 — البوابة 192.168.10.65</p></div></div>
+<ul>
+<li><strong>فرع عدن (Aden Branch):</strong> وفق تسميات الأجهزة في الرسم الأصلي وتوضيح صاحب المشروع، VLAN 30 هي Employee بشبكة <code>192.168.10.0/26</code> وبوابة <code>192.168.10.1</code>، وVLAN 40 هي Manager بشبكة <code>192.168.10.64/28</code> وبوابة <code>192.168.10.65</code>. تظهر أحدث مخرجات الواجهات أن الواجهتين الفرعيتين <code>FastEthernet0/0.30</code> و<code>FastEthernet0/0.40</code> بحالة <code>up/up</code>.</li>
+<li><strong>فرع إب (Ibb Branch):</strong> VLAN 10 هي Employee بشبكة <code>192.168.30.0/28</code> وبوابة <code>192.168.30.1</code>، وVLAN 20 هي Manager بشبكة <code>192.168.30.64/26</code> وبوابة <code>192.168.30.65</code> وفق آخر تأكيد من صاحب المشروع.</li>
+<li><strong>نواة مزودي الخدمة (ISP Core):</strong> تتكون من <code>ISP_Ibb</code> و<code>Main_ISP</code> و<code>ISP_Aden</code>. يسجل التقرير أدلة على جيران MPLS LDP وعناوين معرفات LDP/Loopback. يجب ربط كل ادعاء بنتيجة الفحص المقابلة، وعدم افتراض قياسات أداء لم تُسجّل.</li>
+</ul>
+<div class="scope-note"><strong>نطاق الدليل:</strong> ملف المحاكاة الأصلي غير متوفر حاليًا. لذلك يميز هذا التقرير بين ما تؤكده مخرجات الواجهات التي تم الاحتفاظ بها، وما ورد في مقتطفات إعداد أقدم يحتاج إلى مطابقة نهائية.</div>
+</div>
+<!-- إعدادات الأجهزة: الفروع -->
+<div class="section page-break" id="configs-branches">
+<h2 class="section-title">4. الإعدادات الفنية: فروع المؤسسة (إب وعدن)</h2>
+<div class="device-config">
+<h3 class="device-title">1. سويتش وراوتر فرع عدن</h3>
+<pre><code><span class="comment">! === Aden Switch — normalized role labels for public documentation ===</span>
+<span class="comment">! The original simulator file is unavailable; verify running VLAN database if recovered.</span>
+conf t
+vlan 30
+ name Employee
+exit
+vlan 40
+ name Manager
+exit
+int e0/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+exit
+int range e1/0 , e1/1
+switchport mode access
+switchport access vlan 40
+exit
+int range e0/1 , e0/2
+switchport mode access
+switchport access vlan 30
+exit
+
+<span class="comment">! === Router Aden / Radden — normalized from latest interface evidence ===</span>
+conf t
+interface FastEthernet0/0
+ no ip address
+ no shutdown
+exit
+interface FastEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.10.1 255.255.255.192
+ no shutdown
+exit
+interface FastEthernet0/0.40
+ encapsulation dot1Q 40
+ ip address 192.168.10.65 255.255.255.240
+ no shutdown
+exit
+<span class="comment">! Latest show ip interface brief reports Multilink1 = 10.70.10.2 up/up.
+! Full bundle/member configuration was not available for re-verification.</span>
+router ospf 1
+ router-id 1.1.1.1
+ network 10.70.10.0 0.0.0.3 area 0
+ network 192.168.10.0 0.0.0.63 area 0
+ <span class="comment">! Verify whether 192.168.10.64/28 is advertised by OSPF in the actual running configuration.</span>
+exit</code></pre>
+</div>
+<div class="device-config">
+<h3 class="device-title">2. سويتش وراوتر فرع إب</h3>
+<pre><code><span class="comment">! === Ibb Switch ===</span>
+conf t
+vlan 10
+name Employee
+exit
+vlan 20
+name Manager
+exit
+interface e0/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+exit
+interface range e0/1 , e0/3
+switchport mode access
+switchport access vlan 10
+exit
+interface range e0/2 , e1/0
+switchport mode access
+switchport access vlan 20
+exit
+
+<span class="comment">! === Router rabb (Ibb) ===</span>
+conf t
+<span class="comment">! Public copy: omit CHAP credentials; configure matching secrets privately.</span>
+interface FastEthernet0/0
+no shutdown
+exit
+interface FastEthernet0/0.10
+encapsulation dot1Q 10
+ip address 192.168.30.1 255.255.255.240
+exit
+interface FastEthernet0/0.20
+encapsulation dot1Q 20
+ip address 192.168.30.65 255.255.255.192
+exit
+interface Serial3/0
+ip address 10.60.10.2 255.255.255.252
+encapsulation ppp
+ppp authentication chap
+ppp chap hostname rabb
+<span class="comment">! CHAP shared secret omitted from this public copy.</span>
+no shutdown
+exit
+router ospf 2
+router-id 3.3.3.3
+network 10.60.10.0 0.0.0.3 area 0
+network 192.168.30.0 0.0.0.15 area 0
+network 192.168.30.64 0.0.0.63 area 0
+exit</code></pre>
+</div>
+</div>
+<!-- إعدادات الأمان -->
+<div class="section page-break" id="security">
+<h2 class="section-title">5. إعدادات الأمان (Port Security &amp; STP)</h2>
+<p>لضمان تحقيق أعلى درجات الموثوقية والأمان في بيئة العمل، تم تنفيذ بروتوكولات حماية السويتشات ومنافذ الوصول للمستخدمين لمنع الاختراقات الداخلية (MAC Address Spoofing) ومنع حلقات البث.</p>
+<div class="device-config">
+<h3 class="device-title">تأمين المنافذ الطرفية (Port Security)</h3>
+<pre><code>enable
+configure terminal
+
+interface e0/1
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security violation shutdown
+exit</code></pre>
+<div class="review-note"><strong>ملاحظة توثيقية:</strong> مقتطف الإعداد أعلاه يستخدم وضع المخالفة <code>shutdown</code>، بينما مخرج <code>show port-security interface e0/1</code> المحفوظ في التقرير يعرض <code>Restrict</code>. لا يمكن اعتبار الإعداد والمخرج إثباتًا لنفس الحالة التشغيلية قبل التحقق من أنهما يعودان إلى الجهاز والاختبار نفسيهما.</div>
+</div>
+<div class="review-note"><strong>حدود دليل STP:</strong> لا يحتوي الإصدار المتاح على مقتطف إعداد أو مخرج تحقق مستقل لـ STP. لذلك لا ندّعي إثبات إعداداته التفصيلية حتى تتوفر لقطة أوامر مناسبة.</div>
+</div>
+<!-- الفحص والاختبار وحل المشاكل (هنا الإضافة الجديدة الخاصة بمشكلة MPLS) -->
+<div class="section page-break" id="verification">
+<h2 class="section-title">6. الفحص والاختبار الفني وحل المشكلات (Troubleshooting)</h2>
+<!-- دراسة الحالة وحل المشكلة -->
+<div class="troubleshoot-box">
+<h4>⚠️ دراسة حالة: حل مشكلة عدم تزامن بروتوكول MPLS LDP</h4>
+<p><strong>وصف المشكلة:</strong> أثناء إعداد السحابة المركزية (ISP Core)، واجهنا مشكلة تقنية تتمثل في أن بروتوكول تبادل الملصقات (MPLS LDP) رفض العمل وبناء علاقات الجوار في البداية.</p>
+<p><strong>التحليل والسبب (Root Cause):</strong> بعد فحص الإعدادات، اكتشفنا أن بروتوكول LDP كان يحاول استخدام الـ <code>Router-ID</code> الخاص ببروتوكول OSPF (والذي كان يعتمد على منافذ غير مهيأة بشكل صحيح للتبادل المباشر لجلسات TCP الخاصة بـ LDP) لتأسيس الاتصال. أدى هذا التعارض إلى فشل جلسات الـ TCP الخاصة بـ LDP بين الراوترات الثلاثة في شبكة المزود.</p>
+<div class="solution-title">✅ الحل الهندسي الذي تم تطبيقه:</div>
+<p>تم حل المشكلة جذرياً عبر تجاوز الـ Router-ID العام وإجبار بروتوكول LDP على التخاطب وإنشاء الجوارات بشكل مباشر عبر المنافذ الفيزيائية المربوطة (Transport-address interface). قمنا بتنفيذ الأوامر التالية على أجهزة الـ ISP الثلاثة:</p>
+<pre style="margin-top: 15px; border: 1px solid #fed7d7;"><code><span class="comment">! === إعدادات الراوتر المركزي (ISP_Main) ===</span>
+banner motd #
+*********************************************************
+*     WARNING: AUTHORIZED ACCESS ONLY!                  *
+*     Welcome to ISP Core Network                       *
+*     Designed by: Huthaifa, Khalid, Amin, Razaz        *
+*     Supervised by: Eng. Zakaria                       *
+*********************************************************
+#
+
+configure terminal
+interface Serial3/1
+ mpls ldp discovery transport-address interface
+interface Serial3/0
+ mpls ldp discovery transport-address interface
+end
+
+<span class="comment">! === إعدادات راوتر مزود إب (ISP_Ibb) ===</span>
+configure terminal
+interface Serial3/1
+ mpls ldp discovery transport-address interface
+end
+
+<span class="comment">! === إعدادات راوتر مزود عدن (ISP_Aden) ===</span>
+configure terminal
+interface Serial3/0
+ mpls ldp discovery transport-address interface
+end</code></pre>
+<p style="margin-top:10px;"><em>* بمجرد تطبيق هذا الحل، استقرت شبكة הـ MPLS وقامت الجوارات بنجاح.</em></p>
+</div>
+<div class="device-config">
+<h3 class="device-title">1. إثبات نجاح بروتوكول MPLS وعلاقات الجوار (LDP Neighbors)</h3>
+<p>يوضح هذا المخرج أن الراوتر المركزي (ISP_main) قد أسس علاقة جوار ناجحة ومستقرة عبر بروتوكول LDP مع الراوترات الأخرى بعد تطبيق الحل المذكور أعلاه.</p>
+<pre class="output-pre"><code><span class="comment">Sep 14 23:56:02.834: %LDP-5-NBRCHG: LDP Neighbor 100.100.100.3:0 (2)</span>
+ISP_main# <span class="highlight">show mpls ldp neighbor</span>
+    Peer LDP Ident: 100.100.100.2:0; Local LDP Ident 100.100.100.1:0
+        TCP connection: 203.0.113.1.646 - 203.0.113.2.11197
+        State: Oper; Msgs sent/rcvd: 15/15; Downstream
+        Up time: 00:01:23
+        LDP discovery sources:
+          Serial3/1, Src IP addr: 203.0.113.1
+        Addresses bound to peer LDP Ident:
+          10.10.10.2    203.0.113.1    100.100.100.2
+    Peer LDP Ident: 100.100.100.3:0; Local LDP Ident 100.100.100.1:0
+        TCP connection: 198.51.100.2.22863 - 198.51.100.1.646
+        State: Oper; Msgs sent/rcvd: 14/14; Downstream
+        Up time: 00:00:38
+        LDP discovery sources:
+          Serial3/0, Src IP addr: 198.51.100.2
+        Addresses bound to peer LDP Ident:
+          10.20.10.2    198.51.100.2    100.100.100.3
+ISP_main#</code></pre>
+</div>
+<div class="device-config">
+<h3 class="device-title">2. اختبار الوصول من راوتر إب إلى عنوان ضمن شبكة مزود عدن (Ping Test)</h3>
+<p>الهدف <code>198.51.100.2</code> هو عنوان واجهة <code>ISP_Aden</code> وفق جدول روابط المزودين. يثبت هذا الاختبار الوصول إلى ذلك العنوان في وقت الالتقاط، لكنه لا يثبت وحده اكتمال الاتصال من جهاز مستخدم في VLAN إلى جهاز مستخدم في فرع آخر.</p>
+<pre class="output-pre"><code>rabb# <span class="highlight">ping 198.51.100.2</span>
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 198.51.100.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 52/76/140 ms</code></pre>
+</div>
+<div class="device-config">
+<h3 class="device-title">3. تتبع المسار إلى عنوان ISP_Aden (Traceroute Test)</h3>
+<pre class="output-pre"><code>rabb# <span class="highlight">traceroute 198.51.100.2</span>
+
+Type escape sequence to abort.
+Tracing the route to 198.51.100.2
+
+  1 10.60.10.1 16 msec 20 msec 16 msec
+  2 10.10.10.2 40 msec 36 msec 44 msec
+  3 198.51.100.2 60 msec 76 msec 52 msec</code></pre>
+</div>
+<div class="device-config">
+<h3 class="device-title">4. جدول توجيه الملصقات (MPLS Forwarding Table)</h3>
+<p>يوضح المخرج استخدام ملصقات مثل 16 و17 و18. لكن بعض البوادئ المعروضة فيه بصيغة <code>/24</code>، بينما خطة VLAN الحالية تستخدم أقنعة متفاوتة مثل <code>/28</code> و<code>/26</code>. ينبغي التحقق مما إذا كانت هذه مسارات تلخيصية أم مخرجًا أقدم قبل نسبتها إلى خطة العنونة النهائية.</p>
+<pre class="output-pre"><code>GWIBB# <span class="highlight">show mpls forwarding-table</span>
+Local      Outgoing   Prefix           Bytes Label   Outgoing   Next Hop
+Label      Label      or Tunnel Id     Switched      interface
+16         18         10.20.10.0/24    0             Se1/0      10.10.10.2
+17         Pop Label  198.51.100.0/24  1140          Se1/0      10.10.10.2
+18         Pop Label  192.168.30.0/24  0             Se3/0      point2point</code></pre>
+</div>
+<div class="device-config">
+<h3 class="device-title">5. التحقق من عمل أمان المنافذ (Port Security)</h3>
+<pre class="output-pre"><code>IOU1# <span class="highlight">show port-security interface e0/1</span>
+Port Security              : Enabled
+Port Status                : Secure-up
+Violation Mode             : Restrict
+Aging Time                 : 0 mins
+Aging Type                 : Absolute
+SecureStatic Address Aging : Disabled
+Maximum MAC Addresses      : 1
+Total MAC Addresses        : 1
+Configured MAC Addresses   : 0
+Sticky MAC Addresses       : 1
+Last Source Address:Vlan   : aabb.cc00.0100:10
+Security Violation Count   : 0</code></pre>
+</div>
+</div>
+<div class="section page-break" id="justifications">
+<h2 class="section-title">7. مبررات اختيار التصميم (Design Justifications)</h2>
+<p>لم يتم اختيار البروتوكولات بشكل عشوائي، بل بناءً على متطلبات الشبكة كما يوضح الجدول التالي:</p>
+<table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px; text-align: right;">
+<tr style="background-color: #2b6cb0; color: white;">
+<th style="padding: 10px;">التقنية المختارة</th>
+<th style="padding: 10px;">البديل الذي تم استبعاده</th>
+<th style="padding: 10px;">السبب الهندسي للاختيار</th>
+</tr>
+<tr>
+<td style="padding: 10px; font-weight: bold;">بروتوكول OSPF</td>
+<td style="padding: 10px;">RIP أو EIGRP</td>
+<td style="padding: 10px;">تم اختيار OSPF لأنه بروتوكول قياسي (Standard) يعمل على جميع الأجهزة (وليس حكراً على سيسكو مثل EIGRP القديم)، ويعتمد على سرعة المسار (Bandwidth) وليس عدد القفزات (مثل RIP).</td>
+</tr>
+<tr>
+<td style="padding: 10px; font-weight: bold;">مصادقة CHAP</td>
+<td style="padding: 10px;">مصادقة PAP</td>
+<td style="padding: 10px;">تم استبعاد PAP لأنه يرسل كلمة المرور كنص واضح (Clear Text)، بينما CHAP يرسلها مشفرة (Hash)، مما يحمي اتصال الفروع من الاختراق.</td>
+</tr>
+<tr>
+<td style="padding: 10px; font-weight: bold;">MPLS في الكور</td>
+<td style="padding: 10px;">التوجيه التقليدي (IP Routing)</td>
+<td style="padding: 10px;">التوجيه التقليدي يستهلك المعالج للبحث في جدول التوجيه عند كل قفزة، بينما MPLS يقوم بتبديل الحزم بناءً على "الملصقات" مما يسرع حركة المرور الهائلة بين المدن.</td>
+</tr>
+</table>
+</div>
+<!-- الخاتمة -->
+<div class="section page-break" id="conclusion">
+<h2 class="section-title">8. الخاتمة والتوصيات</h2>
+<p>
+            جمع المشروع في طوبولوجيا واحدة شبكات فرعي إب وعدن مع روابط WAN ونواة مزودي خدمة، مع خطة عنونة VLSM وشبكات VLAN وتوجيه OSPF وتقنيات MPLS/LDP وPPP مع CHAP. كما يوثق التقرير مخرجات محددة من فحص جيران LDP، وجدول MPLS، واختبارات الوصول وتتبع المسار.
+        </p>
+<p>
+            تمثل مخرجات الفحص أدلة على الحالات التي تظهرها وقت الالتقاط فقط. ولأن ملف المحاكاة الأصلي غير متوفر حاليًا، ينبغي التعامل مع مقتطفات الإعدادات القديمة التي تتعارض مع مخرجات الواجهات على أنها تحتاج إلى المطابقة، لا على أنها وصف نهائي مؤكد لكل جهاز.
+        </p>
+<p>
+            قبل النشر العام، يوصى بمطابقة أسماء VLAN التشغيلية في عدن مع تسميات Manager وEmployee الموضحة هنا، وتأكيد إعلان شبكة VLAN 40 ضمن OSPF في عدن، وتوحيد دليل Port Security مع وضع المخالفة المعروض، وإضافة دليل مستقل لـ STP واختبار اتصال من مضيف إلى مضيف بين VLANs الفروع. كما يجب حذف كلمات المرور وأي أسرار من ملفات التهيئة المنشورة.
+        </p>
+</div>
+</div>
+</body>
+</html>

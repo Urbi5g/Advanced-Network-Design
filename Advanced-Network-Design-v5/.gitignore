@@ -1,0 +1,19 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.tmp
+
+# Secrets and local environment files
+.env
+.env.*
+*.key
+*.pem
+secrets.*
+credentials.*
+
+# Large local/simulator autosaves; add a deliberate exception if one is later meant to be versioned
+*.autosave
+*.bak
